@@ -1,0 +1,54 @@
+version: '3.3'
+
+services:
+
+   db:
+     image: %docker_image_prefix%_db
+     volumes:
+       - %docker_image_prefix%_db_data:/var/lib/mysql
+     restart: always
+
+     networks:
+       %docker_image_prefix%_net:
+         ipv4_address: ${db_addr}
+
+     environment:
+       MYSQL_DATABASE: app
+       MYSQL_USER: app
+       MYSQL_PASSWORD: app
+  
+   app:
+     image: %docker_image_prefix%_app
+     ports:
+      - "80:18080"
+      - "443:18443"
+     depends_on:
+       - db
+
+     networks:
+       %docker_image_prefix%_net:
+         ipv4_address: ${app_addr}
+
+     volumes:
+       - type: bind
+         source: ./project
+         target: /var/www/
+         
+     restart: always
+     environment:
+       DB_HOST: ${db_addr}
+       DB_USERNAME: "app"
+       DB_DATABASE: "app"
+       DB_PASSWORD: "app"
+
+volumes:
+    %docker_image_prefix%_db_data: {}
+       
+
+networks:
+  %docker_image_prefix%_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${nw_addr}
+    
