@@ -11,3 +11,7 @@ docker_rebuild_everything: docker_rebuild_db docker_rebuild_app
 docker_up:
 	docker-compose up --build
 
+symfony_project:
+	cd project && rm -f .gitkeep && \
+	composer create-project symfony/skeleton . && \
+	composer require symfony/webapp-pack

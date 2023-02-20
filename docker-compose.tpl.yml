@@ -13,15 +13,16 @@ services:
          ipv4_address: ${db_addr}
 
      environment:
-       MYSQL_DATABASE: app
-       MYSQL_USER: app
-       MYSQL_PASSWORD: app
+       MARIADB_DATABASE: app
+       MARIADB_USER: app
+       MARIADB_PASSWORD: app
+       MARIADB_ROOT_PASSWORD: root
   
    app:
      image: %docker_image_prefix%_app
      ports:
-      - "80:18080"
-      - "443:18443"
+      - "18080:80"
+      - "18443:443"
      depends_on:
        - db
 

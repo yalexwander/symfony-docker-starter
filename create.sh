@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # generate docker compose for new project
-# Usage:
-#   bash create.sh pr99
 
 DOCKER_IMAGE_PREFIX=`cat .env | grep docker_image_prefix | awk -F= '{ print $2 }'`
 

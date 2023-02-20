@@ -1,14 +1,15 @@
 # Symfony + Docker project starter
 
 - git clone git@github.com:yalexwander/symfony-docker-starter.git .
-- edit `.env` to change image prefix and subnet. Change 3rd byte of ip addr.
+- edit `.env` to change `docker_image_prefix` and subnet. Change 3rd byte of ip addr.
 - `bash create.sh`
+- if you use vpn `sudo systemctl restart docker`
 - `make docker_rebuild_everything`
 - `make docker_up`
-- `cd project`
-- `composer create-project symfony/skeleton .`
+- `make symfony_project`
+- http://localhost:18080
 
 # Notes
 
 - database name, user and password: `app`
-- uses debian without systemctl, service works ok
+- `systemctl` not available use `service`
