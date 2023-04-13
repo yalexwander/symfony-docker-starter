@@ -3,11 +3,11 @@ FROM bitnami/minideb:bullseye
 ENV LANG en_US.utf8
 
 # from https://github.com/bitnami/bitnami-docker-symfony/blob/master/5.3/debian-10/Dockerfile
-RUN apt update && apt upgrade && apt -y install \
+RUN apt update && apt -y install \
      # prod
-     nginx php php-fpm php-json php-ctype php-curl php-mbstring php-xml php-zip php-tokenizer php-tokenizer libpcre3 \
+     nginx php php-fpm php-json php-mysql php-ctype php-curl php-mbstring php-xml php-zip php-tokenizer php-tokenizer libpcre3 \
      # for troubleshooting
-     vim screen php-xdebug \
+     vim screen php-xdebug mc \
      --no-install-recommends
 
 RUN mkdir -p /var/www
